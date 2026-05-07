@@ -98,6 +98,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-<p align="center">
-  Made with ❤️ by the EduSwap Community
-</p>
