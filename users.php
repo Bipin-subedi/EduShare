@@ -71,6 +71,9 @@ if (isset($_GET['type'])) {
             }
 
             $res = mysqli_query($conn, $sql);
+            if (!$res) {
+                echo "Error: " . mysqli_error($conn);
+            }
 
             if (mysqli_num_rows($res) > 0) {
                 while ($row = mysqli_fetch_assoc($res)) {

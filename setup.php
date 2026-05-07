@@ -39,32 +39,36 @@ $sql = "CREATE TABLE IF NOT EXISTS reviews (
 )";
 mysqli_query($conn, $sql);
 
-// Check if data exists
-$check = mysqli_query($conn, "SELECT * FROM users");
-if (mysqli_num_rows($check) == 0) {
-    // Insert Users
-    mysqli_query($conn, "INSERT INTO users (name, city, bio, credits, image, rating) VALUES 
-    ('Alex Johnson', 'New York', 'Hi! I\'m Alex. I love teaching Javascript and Web Development and I\'m looking to learn Guitar. Been coding since high school and want to pick up a creative hobby.', 15, 'https://i.pravatar.cc/150?u=alex', 4.8),
-    ('Sarah Miller', 'London', 'Hi! I\'m Sarah. I love teaching Photography and I\'m looking to learn UI Design. Professional photographer for 5 years, excited to expand into design.', 8, 'https://i.pravatar.cc/150?u=sarah', 4.9),
-    ('Mike Ross', 'Toronto', 'Hi! I\'m Mike. I love teaching Guitar and I\'m looking to learn Photoshop. Play guitar in a local band and need help making our posters look good.', 12, 'https://i.pravatar.cc/150?u=mike', 4.7),
-    ('Emma Watson', 'Los Angeles', 'Hi! I\'m Emma. I love teaching UI Design and I\'m looking to learn Photography. UX/UI Designer at a startup, want to get into street photography.', 10, 'https://i.pravatar.cc/150?u=emma', 5.0),
-    ('James Chen', 'San Francisco', 'Hi! I\'m James. I love teaching Python and I\'m looking to learn Cooking. Software engineer by day, aspiring chef by night.', 20, 'https://i.pravatar.cc/150?u=james', 4.3),
-    ('Priya Sharma', 'Mumbai', 'Hi! I\'m Priya. I love teaching Data Science and I\'m looking to learn Piano. Working on my Masters and want to pick up music as a stress reliever.', 6, 'https://i.pravatar.cc/150?u=priya', 4.6),
-    ('Tom Baker', 'Chicago', 'Hi! I\'m Tom. I love teaching Cooking and I\'m looking to learn Python. Culinary school grad who wants to build a recipe app.', 14, 'https://i.pravatar.cc/150?u=tom', 4.2),
-    ('Lisa Park', 'Seattle', 'Hi! I\'m Lisa. I love teaching Piano and I\'m looking to learn Data Science. Music teacher for 3 years, curious about working with data.', 9, 'https://i.pravatar.cc/150?u=lisa', 4.5),
-    ('David Okafor', 'Austin', 'Hi! I\'m David. I love teaching Video Editing and I\'m looking to learn Guitar. YouTuber with 5K subscribers looking to add music to my content.', 11, 'https://i.pravatar.cc/150?u=david', 4.7)
+// Force reset data for clean setup
+mysqli_query($conn, "TRUNCATE TABLE users");
+mysqli_query($conn, "TRUNCATE TABLE skills");
+mysqli_query($conn, "TRUNCATE TABLE sessions");
+mysqli_query($conn, "TRUNCATE TABLE reviews");
+
+if (true) {
+    // Insert Users with explicit IDs to ensure matching with skills table
+    mysqli_query($conn, "INSERT INTO users (id, name, city, bio, credits, image, rating) VALUES 
+    (1, 'Bipin Subedi', 'Pokhara', 'Hi! I\'m Bipin. I love teaching Mobile App Development and I\'m looking to learn Guitar. I have been building apps for years and want to pick up a creative hobby.', 15, 'assets/images/avatars/bipin.jpg', 4.8),
+    (2, 'Khusi Poudel', 'Syangja', 'Hi! I\'m Khusi. I love sharing my knowledge through Teaching and I\'m looking to learn UI Design. Passionate educator with a focus on student growth.', 8, 'assets/images/avatars/khusi.jpg', 4.9),
+    (3, 'Suyog Regmi', 'Lamjung', 'Hi! I\'m Suyog. I love teaching Dancing and I\'m looking to learn Photoshop. I have been dancing for years and need help making our posters look good.', 12, 'assets/images/avatars/suyog.jpg', 4.7),
+    (4, 'Charu Shrestha ', 'Pokhara', 'Hi! I\'m Charu. I love teaching UI/UX Design and I\'m looking to learn Photography. UX/UI Designer at a startup, want to get into street photography.', 10, 'assets/images/avatars/charu.jpg', 5.0),
+    (5, 'Aaditya  Tripahti', 'Pokhara', 'Hi! I\'m Aaditya. I love teaching Singing and I\'m looking to learn Cooking. Professional singer by day, aspiring chef by night.', 20, 'assets/images/avatars/aaditya.jpg', 4.3),
+    (6, 'Sushant BK', 'Birgunj', 'Hi! I\'m Sushant. I love teaching Data Science and I\'m looking to learn Piano. Working on my Masters and want to pick up music as a stress reliever.', 6, 'assets/images/avatars/sushant.jpg', 4.6),
+    (7, 'Eraj Adhikari ', 'Pokhara', 'Hi! I\'m Eraj. I love teaching Riding and I\'m looking to learn Python. Expert rider who wants to build a specialized app.', 14, 'assets/images/avatars/eraj.jpg', 4.2),
+    (8, 'Sudip dahal', 'Kathmandu', 'Hi! I\'m Sudip. I love teaching Singing and I\'m looking to learn Data Science. Vocal coach for 3 years, curious about working with data.', 9, 'assets/images/avatars/sudip.jpg', 4.5),
+    (9, 'Sita Sharma', 'Hemja', 'Hi! I\'m Sita. I love teaching Video Editing and I\'m looking to learn Guitar. YouTuber with 5K subscribers looking to add music to my content.', 11, 'assets/images/avatars/sita.jpg', 4.7)
     ");
 
     // Insert Skills
     mysqli_query($conn, "INSERT INTO skills (user_id, skill_name, type) VALUES 
-    (1, 'Javascript', 'teach'), (1, 'Web Development', 'teach'), (1, 'Guitar', 'learn'),
-    (2, 'Photography', 'teach'), (2, 'UI Design', 'learn'),
-    (3, 'Guitar', 'teach'), (3, 'Photoshop', 'learn'),
-    (4, 'UI Design', 'teach'), (4, 'Photography', 'learn'),
-    (5, 'Python', 'teach'), (5, 'Cooking', 'learn'),
+    (1, 'Mobile App Developer', 'teach'), (1, 'Guitar', 'learn'),
+    (2, 'Teaching', 'teach'), (2, 'UI Design', 'learn'),
+    (3, 'Dancing', 'teach'), (3, 'Photoshop', 'learn'),
+    (4, 'UI/UX Designer', 'teach'), (4, 'Photography', 'learn'),
+    (5, 'Singing', 'teach'), (5, 'Cooking', 'learn'),
     (6, 'Data Science', 'teach'), (6, 'Piano', 'learn'),
-    (7, 'Cooking', 'teach'), (7, 'Python', 'learn'),
-    (8, 'Piano', 'teach'), (8, 'Data Science', 'learn'),
+    (7, 'Riding', 'teach'), (7, 'Python', 'learn'),
+    (8, 'Singing', 'teach'), (8, 'Data Science', 'learn'),
     (9, 'Video Editing', 'teach'), (9, 'Guitar', 'learn')
     ");
 

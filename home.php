@@ -3,6 +3,9 @@ include 'db.php';
 $logged_in_user_id = 1;
 
 $result = mysqli_query($conn, "SELECT * FROM users WHERE id != $logged_in_user_id ORDER BY rating DESC LIMIT 3");
+if (!$result) {
+    echo "Error: " . mysqli_error($conn);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
