@@ -1,12 +1,11 @@
-// Simple script for EduSwap
-console.log("EduSwap Loaded!");
 
-// Initialize Lucide Icons
+
+
 if (typeof lucide !== 'undefined') {
     lucide.createIcons();
 }
 
-// search filter for users page
+
 function filterUsers() {
     var input = document.querySelector('.search-filters input[type="text"]');
     if (input) {
@@ -26,7 +25,7 @@ function filterUsers() {
 }
 filterUsers();
 
-// show more reviews toggle on profile page
+
 function toggleReviews() {
     var extras = document.querySelectorAll('.extra-review');
     var btn = document.getElementById('show-more-reviews');
@@ -41,7 +40,7 @@ function toggleReviews() {
     });
 }
 
-// animate cards on scroll (never called)
+
 function animateCards() {
     var cards = document.querySelectorAll('.card');
     var observer = new IntersectionObserver(function(entries) {
